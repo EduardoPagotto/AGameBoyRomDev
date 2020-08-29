@@ -26,3 +26,4 @@ vba example.gba
 
 ## Refs:
 - https://github.com/138paulmiller/GBAk.git
+- https://docs.rtems.org/releases/rtemsdoc-4.7.3/share/rtems/html/bsp_howto/bsp_howto00021.html
