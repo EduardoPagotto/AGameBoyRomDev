@@ -7,7 +7,8 @@ INC = $(TOOLCHAIN)/arm-none-eabi/include
 obj := crt0.o example.o
 bin := example.gba
 opt := -O3 -fomit-frame-pointer -marm -mcpu=arm7tdmi
-CFLAGS := $(opt) -std=c89 -pedantic -Wall
+#opt := -O3 -fomit-frame-pointer -marm -mcpu=arm7tdmi -specs=nano.specs -specs=nosys.specs
+CFLAGS =  $(opt) -std=c99 -O3 -pedantic -Wall -nostartfiles -lm -lc
 
 $(bin): $(obj)
 	$(CC) -o out.elf -I$(INC) $(obj) -Tlnkscript -nostartfiles -lm
