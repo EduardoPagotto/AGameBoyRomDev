@@ -11,7 +11,7 @@ opt := -O3 -fomit-frame-pointer -marm -mcpu=arm7tdmi
 CFLAGS =  $(opt) -std=c99 -O3 -pedantic -Wall -nostartfiles -lm -lc
 
 $(bin): $(obj)
-	$(CC) -o out.elf -I$(INC) $(obj) -Tlnkscript -nostartfiles -lm
+	$(CC) -o out.elf -I$(INC) $(obj) -Tlnkscript.ld -nostartfiles -lm
 	$(OBJCOPY) -O binary out.elf $(bin)
 	$(RM) out.elf
 
