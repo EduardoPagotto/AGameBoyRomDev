@@ -1,5 +1,7 @@
-TOOLCHAIN = /opt/gcc-arm-none-eabi-9-2020-q2-update
+#ROOT := $(shell pwd)
+#SRC := $(ROOT)/src
 
+TOOLCHAIN = /opt/gcc-arm-none-eabi-9-2020-q2-update
 CC := $(TOOLCHAIN)/bin/arm-none-eabi-gcc
 AS := $(TOOLCHAIN)/bin/arm-none-eabi-as
 LD := $(TOOLCHAIN)/bin/arm-none-eabi-ld 
@@ -7,7 +9,12 @@ OBJCOPY := $(TOOLCHAIN)/bin/arm-none-eabi-objcopy
 INC = $(TOOLCHAIN)/arm-none-eabi/include
 
 LDSCRIPT := lnkscript.ld
-obj := crt0.o example.o
+
+SOURCES_GCC := $(wildcard ./src/*.c)
+SOURCES_AS := $(wildcard ./src/*.s)
+obj := $(SOURCES_AS:.s=.o) $(SOURCES_GCC:.c=.o)
+#obj := crt0.o example.o
+
 bin := example.gba
 opt := -O3 -fomit-frame-pointer -marm -mcpu=arm7tdmi
 #opt := -O3 -fomit-frame-pointer -marm -mcpu=arm7tdmi -specs=nano.specs -specs=nosys.specs
