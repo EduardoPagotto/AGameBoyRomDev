@@ -4,5 +4,25 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"editor.formatOnSave": true,
+		"editor.minimap.enabled": false
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "C++ Launch",
+				"type": "cppdbg",
+				"request": "launch",
+				"program": "${workspaceRoot}/test.elf",
+				"miDebuggerServerAddress": "myremotehostname:1234",
+				"cwd": "${workspaceRoot}",
+				"externalConsole": true,
+				"linux": {
+					"MIMode": "gdb"
+				}
+			}
+		]
+	}
 }
