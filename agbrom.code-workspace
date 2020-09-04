@@ -6,21 +6,42 @@
 	],
 	"settings": {
 		"editor.formatOnSave": true,
-		"editor.minimap.enabled": false
+		"editor.minimap.enabled": false,
+		"C_Cpp.dimInactiveRegions": false
 	},
 	"launch": {
-		"version": "0.2.0",
 		"configurations": [
 			{
-				"name": "C++ Launch",
-				"type": "cppdbg",
-				"request": "launch",
-				"program": "${workspaceRoot}/test.elf",
-				"miDebuggerServerAddress": "myremotehostname:1234",
+				"type": "gdb",
+				"request": "attach",
+				"name": "Attach to QEMU Bare Metal",
+				"executable": "${workspaceRoot}/arm_bare_metal1/test.elf",
+				"target": "localhost:1234",
+				"remote": true,
 				"cwd": "${workspaceRoot}",
-				"externalConsole": true,
-				"linux": {
-					"MIMode": "gdb"
+				"valuesFormatting": "parseText",
+				"gdbpath": "/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gdb"
+			}
+		],
+		"compounds": []
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"type": "shell",
+				"label": "C/C++: MakeFile",
+				"command": "/usr/bin/make",
+				"args": [
+					"all"
+				],
+				"options": {
+					"cwd": "${workspaceFolder}/arm_bare_metal1"
+				},
+				"problemMatcher": [],
+				"group": {
+					"kind": "build",
+					"isDefault": true
 				}
 			}
 		]

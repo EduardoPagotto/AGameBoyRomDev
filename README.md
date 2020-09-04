@@ -21,6 +21,9 @@ sudo apt install qemu-system-arm
 apt-get install visualboyadvance
 ```
 
+VSCode
+ext install webfreak.debug
+
 ## Compilar
 MakeFile
 ```bash
