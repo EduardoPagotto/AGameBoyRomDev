@@ -37,7 +37,7 @@ add_executable(${EXECUTABLE} ${GENERATED_FILES})
 # )
 
 target_link_options(${EXECUTABLE} PRIVATE
-        -T${CMAKE_SOURCE_DIR}/minimal/memmap.ld
+        -T${CMAKE_CURRENT_SOURCE_DIR}/memmap.ld
         #-mcpu=arm926ej-s
         # -g
         # -mthumb
@@ -51,16 +51,18 @@ target_link_options(${EXECUTABLE} PRIVATE
         # -Wl,--gc-sections
 )
 
+set(DST_END ${CMAKE_SOURCE_DIR}/bin)
+
 # Print executable size
 add_custom_command(TARGET ${EXECUTABLE} 
         POST_BUILD
-        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-size ${EXECUTABLE})
+        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-size ${DST_END}/${EXECUTABLE})
 
 # Create aux files
 add_custom_command(TARGET ${EXECUTABLE}
         POST_BUILD
-        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -D ${EXECUTABLE} > ${PROJECT_NAME}.list
-        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objcopy -O ihex ${EXECUTABLE} ${PROJECT_NAME}.hex
-        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objcopy -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin
-        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -d ${EXECUTABLE} -l > dissasembler.s
+        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -D ${DST_END}/${EXECUTABLE} > ${DST_END}/${PROJECT_NAME}.list
+        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objcopy -O ihex ${DST_END}/${EXECUTABLE} ${DST_END}/${PROJECT_NAME}.hex
+        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objcopy -O binary ${DST_END}/${EXECUTABLE} ${DST_END}/${PROJECT_NAME}.bin
+        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -d ${DST_END}/${EXECUTABLE} -l > ${DST_END}/${PROJECT_NAME}_dissasembler.s
 )
