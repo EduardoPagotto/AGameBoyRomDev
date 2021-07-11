@@ -1,4 +1,4 @@
-TOOLCHAIN = /opt/gcc-arm-none-eabi-9-2020-q2-update
+TOOLCHAIN = /opt/gcc-arm-none-eabi-10-2020-q4-major
 CC := $(TOOLCHAIN)/bin/arm-none-eabi-gcc
 AS := $(TOOLCHAIN)/bin/arm-none-eabi-as
 LD := $(TOOLCHAIN)/bin/arm-none-eabi-ld 
