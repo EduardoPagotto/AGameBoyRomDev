@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3)
-set(CMAKE_TOOLCHAIN_FILE ../cmake/toolchain_arm.cmake) 
-
 
 PROJECT(hello)
-
-#find_package(toolchain_arm REQUIRED)
 
 message(STATUS "Toolchain file in: ${CMAKE_TOOLCHAIN_FILE}.")
 enable_language(ASM)
@@ -41,7 +37,7 @@ add_executable(${EXECUTABLE} ${GENERATED_FILES})
 # )
 
 target_link_options(${EXECUTABLE} PRIVATE
-        -T${CMAKE_SOURCE_DIR}/memmap.ld
+        -T${CMAKE_SOURCE_DIR}/minimal/memmap.ld
         #-mcpu=arm926ej-s
         # -g
         # -mthumb
@@ -68,7 +64,3 @@ add_custom_command(TARGET ${EXECUTABLE}
         COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objcopy -O binary ${EXECUTABLE} ${PROJECT_NAME}.bin
         COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -d ${EXECUTABLE} -l > dissasembler.s
 )
-
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)

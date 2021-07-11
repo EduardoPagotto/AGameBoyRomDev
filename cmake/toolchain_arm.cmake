@@ -13,7 +13,7 @@ SET(CMAKE_SYSTEM_NAME Generic)
 SET(CMAKE_SYSTEM_PROCESSOR arm)
 
 set(TOOLCHAIN arm-none-eabi)
-SET(TOOLCHAIN_PREFIX /opt/gcc-arm-none-eabi-10-2020-q4-major/)
+SET(TOOLCHAIN_PREFIX /opt/gcc-arm-none-eabi-10-2020-q4-major)
 
 set(TOOLCHAIN_BIN_DIR ${TOOLCHAIN_PREFIX}/bin)
 set(TOOLCHAIN_INC_DIR ${TOOLCHAIN_PREFIX}/${TOOLCHAIN}/include)
