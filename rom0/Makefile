@@ -15,16 +15,16 @@ SOURCES_AS := $(wildcard ./src/*.s)
 obj := $(SOURCES_AS:.s=.o) $(SOURCES_GCC:.c=.o)
 #obj := crt0.o example.o
 
-bin := example.gba
+bin := rom0.gba
 opt := -O3 -fomit-frame-pointer -marm -mcpu=arm7tdmi
 #opt := -O3 -fomit-frame-pointer -marm -mcpu=arm7tdmi -specs=nano.specs -specs=nosys.specs
 CFLAGS =  $(opt) -std=c99 -O3 -pedantic -Wall -nostartfiles -lm -lc
 
 $(bin): $(obj)
 	@echo Compilando: $(obj)
-	$(CC) -o out.elf -I$(INC) $(obj) -T $(LDSCRIPT) -nostartfiles -lm
-	$(OBJCOPY) -O binary out.elf $(bin)
-	$(RM) out.elf
+	$(CC) -o rom0.elf -I$(INC) $(obj) -T $(LDSCRIPT) -nostartfiles -lm
+	$(OBJCOPY) -O binary rom0.elf $(bin)
+	$(RM) rom0.elf
 
 -include $(obj:.o=.d)
 
