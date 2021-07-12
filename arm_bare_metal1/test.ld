@@ -2,8 +2,8 @@ ENTRY(_Reset)
 SECTIONS
 {
     . = 0x10000;
-    /* .startup . : { ./CMakeFiles/proj_teste1.out.dir/startup.s.obj(.text) } */
-    .startup . : { startup.o(.text) }
+    .startup . : { ./CMakeFiles/test.out.dir/startup.s.obj(.text) }
+    /* .startup . : { startup.o(.text) } */
     .text : { *(.text) }
     .data : { *(.data) }
     .bss : { *(.bss COMMON) }
