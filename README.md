@@ -51,12 +51,25 @@ qemu-system-arm -M versatilepb -m 128M -nographic -s -S -kernel test.bin
 
 qemu-system-arm -machine microbit -cpu cortex-m0 -m 513 -nographic -s -S -singlestep simples
 qemu-system-arm -machine microbit -cpu cortex-m0 -m 513 -nographic -s -S -kernel simples
+
+qemu-system-arm -M microbit -nographic -s -S -device loader ,file=hello.hex
+qemu-system-arm -M microbit -device loader,file=test.hex
+
+
+qemu-system-arm -M microbit -device loader,file=hello.hex -S -s
 ```
 
 GDB
 ```bash
 target remote localhost:1234
-file test.elf
+file hello.elf
+
+br _start
+info regi
+disas _start
+
+run
+nexti 1
 ```
 
 ## Refs
