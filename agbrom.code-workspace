@@ -7,20 +7,25 @@
 	"settings": {
 		"editor.formatOnSave": true,
 		"editor.minimap.enabled": false,
-		"C_Cpp.dimInactiveRegions": false
+		"C_Cpp.dimInactiveRegions": false,
+		"cortex-debug.armToolchainPrefix": "arm-none-eabi",
+		"cortex-debug.armToolchainPath": "/opt/gcc-arm-none-eabi-10-2020-q4-major/bin",
+		"cortex-debug.gdbPath": "/opt/gcc-arm-none-eabi-10-2020-q4-major/bin/arm-none-eabi-gdb",
+		"cortex-debug.enableTelemetry": false,
+		"cortex-debug.flattenAnonymous": true
 	},
 	"launch": {
 		"configurations": [
 			{
 				"type": "gdb",
 				"request": "attach",
-				"name": "Attach to QEMU Bare Metal",
-				"executable": "${workspaceRoot}/arm_bare_metal1/test.elf",
+				"name": "Attach to QEMU Minimal",
+				"executable": "${workspaceRoot}/bin/hello.elf",
 				"target": "localhost:1234",
 				"remote": true,
 				"cwd": "${workspaceRoot}",
 				"valuesFormatting": "parseText",
-				"gdbpath": "/opt/gcc-arm-none-eabi-9-2020-q2-update/bin/arm-none-eabi-gdb"
+				"gdbpath": "/opt/gcc-arm-none-eabi-10-2020-q4-major/bin/arm-none-eabi-gdb"
 			}
 		],
 		"compounds": []
@@ -36,7 +41,7 @@
 					"all"
 				],
 				"options": {
-					"cwd": "${workspaceFolder}/arm_bare_metal1"
+					"cwd": "${workspaceFolder}"
 				},
 				"problemMatcher": [],
 				"group": {
