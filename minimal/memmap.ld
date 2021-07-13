@@ -1,7 +1,7 @@
 MEMORY
 {
-    FLASH (rx)  : ORIGIN = 0x00000000, LENGTH = 0x400
-    RAM (rwx) : ORIGIN = 0x20000000, LENGTH = 0x400
+    FLASH (rx)  : ORIGIN = 0x00000000, LENGTH = 0x1000
+    RAM (rwx) : ORIGIN = 0x20000000, LENGTH = 0x1000
 }
 
 OUTPUT_FORMAT ("elf32-littlearm", "elf32-bigarm", "elf32-littlearm")
@@ -10,7 +10,8 @@ SECTIONS
 {
     .text :
     { 
-        KEEP(*(.Vectors))
+        KEEP(*(.Vectors)) /* tabela de vetores*/
+        . = 0x100;        /* programa a partir de 0x100 */
         *(.text*)
         *(.rodata*)
         . = ALIGN(4);

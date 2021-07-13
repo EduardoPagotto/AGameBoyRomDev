@@ -27,7 +27,7 @@ add_executable(${EXECUTABLE} ${GENERATED_FILES})
 target_compile_options(${EXECUTABLE} PRIVATE
         -mcpu=cortex-m0
         -g
-        #-mthumb
+        -mthumb
         # #-mfpu=fpv4-sp-d16
         # #-mfloat-abi=hard
         #-fdata-sections
@@ -38,9 +38,7 @@ target_compile_options(${EXECUTABLE} PRIVATE
 
 target_link_options(${EXECUTABLE} PRIVATE
         -T${CMAKE_CURRENT_SOURCE_DIR}/memmap.ld
-        #-mcpu=arm926ej-s
-         -g
-        # -mthumb
+        -thumb-interwork
         # #-mfpu=fpv4-sp-d16
         # -mfloat-abi=hard
         # -specs=nano.specs
