@@ -47,6 +47,10 @@ QEMU Rom
 ```bash
 qemu-system-arm -M versatilepb -m 128M -nographic -kernel test.bin
 qemu-system-arm -M versatilepb -m 128M -nographic -s -S -kernel test.bin
+
+
+qemu-system-arm -machine microbit -cpu cortex-m0 -m 513 -nographic -s -S -singlestep simples
+qemu-system-arm -machine microbit -cpu cortex-m0 -m 513 -nographic -s -S -kernel simples
 ```
 
 GDB

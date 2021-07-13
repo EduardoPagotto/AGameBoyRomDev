@@ -24,22 +24,22 @@ add_executable(${EXECUTABLE} ${GENERATED_FILES})
 #         BSP/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 #         BSP/Drivers/CMSIS/Include)
 
-# target_compile_options(${EXECUTABLE} PRIVATE
-#         -mcpu=arm926ej-s
-#         #-g
-#         -mthumb
-#         # #-mfpu=fpv4-sp-d16
-#         # #-mfloat-abi=hard
-#         #-fdata-sections
-#         # -ffunction-sections
-#         # -Wall
-#         # $<$<CONFIG:Debug>:-Og>
-# )
+target_compile_options(${EXECUTABLE} PRIVATE
+        -mcpu=cortex-m0
+        -g
+        #-mthumb
+        # #-mfpu=fpv4-sp-d16
+        # #-mfloat-abi=hard
+        #-fdata-sections
+        # -ffunction-sections
+        # -Wall
+        # $<$<CONFIG:Debug>:-Og>
+)
 
 target_link_options(${EXECUTABLE} PRIVATE
         -T${CMAKE_CURRENT_SOURCE_DIR}/memmap.ld
         #-mcpu=arm926ej-s
-        # -g
+         -g
         # -mthumb
         # #-mfpu=fpv4-sp-d16
         # -mfloat-abi=hard
@@ -64,5 +64,5 @@ add_custom_command(TARGET ${EXECUTABLE}
         COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -D ${DST_END}/${EXECUTABLE} > ${DST_END}/${PROJECT_NAME}.list
         COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objcopy -O ihex ${DST_END}/${EXECUTABLE} ${DST_END}/${PROJECT_NAME}.hex
         COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objcopy -O binary ${DST_END}/${EXECUTABLE} ${DST_END}/${PROJECT_NAME}.bin
-        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -d ${DST_END}/${EXECUTABLE} -l > ${DST_END}/${PROJECT_NAME}_dissasembler.s
+        COMMAND ${TOOLCHAIN_BIN_DIR}/${TOOLCHAIN}-objdump -d ${DST_END}/${EXECUTABLE} > ${DST_END}/${PROJECT_NAME}_dissasembler.s
 )

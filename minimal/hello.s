@@ -1,22 +1,16 @@
-.globl _start
+.data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
+var1: .word 0xf0f0  /* variable 1 in memory */
+var2: .word 0xa1a1  /* variable 2 in memory */
+
+.text          /* start of the text (code) section */ 
+.global _start
+
 _start:
-    b reset
-    b hang
-    b hang
-    b hang
-    b hang
-    b hang
-    b hang
-    b hang
+    ldr r0, =adr_var1  @ load the memory address of var1 via label adr_var1 into R0 
+    ldr r1, =adr_var2  @ load the memory address of var2 via label adr_var2 into R1 
+    ldr r2, [r0]      @ load the value (0x03) at memory address found in R0 to register R2  
+    str r2, [r1]      @ store the value found in R2 (0x03) to the memory address found in R1 
+    bkpt             
 
-hang: b hang
-
-reset:
-    mov r0,#0x16000000
-    mov r1,#0x55
-    str r1,[r0]
-    add r1,r1,#1
-    str r1,[r0]
-    mov r0,#0xF0000000
-    str r1,[r0]
-    b hang
+adr_var1: .word var1  /* address to var1 stored here */
+adr_var2: .word var2  /* address to var2 stored here */
