@@ -54,3 +54,6 @@ dkms.conf
 
 #GameBoy target
 *.gba
+
+/build
+/bin

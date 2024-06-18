@@ -38,21 +38,50 @@ arm-none-eabi-ld -T test.ld test.o startup.o -o test.elf
 arm-none-eabi-objcopy -O binary test.elf test.bin
 ```
 
-## Test
-AGB Rom
+## Tests
+
+# AGB Rom
 ```bash
 vba example.gba 
 ```
-QEMU Rom
+
+# arm_base_metal1
 ```bash
-qemu-system-arm -M versatilepb -m 128M -nographic -kernel test.bin
+# run direct
+# qemu-system-arm -M versatilepb -m 128M -nographic -kernel test.bin
+
+# run and wait gdb
 qemu-system-arm -M versatilepb -m 128M -nographic -s -S -kernel test.bin
 ```
-
-GDB
-```bash
+```GDB
 target remote localhost:1234
-file test.elf
+file hello.elf
+
+br _start
+info regi
+disas _start
+
+run
+nexti 1
+```
+
+# Test minimal project
+```bash
+# Start qemu-arm
+qemu-system-arm -M microbit -device loader,file=hello.hex -S -s -singlestep -m 512 &
+
+# Start GDB
+/opt/gcc-arm-none-eabi-10-2020-q4-major/bin/arm-none-eabi-gdb
+```
+
+```GDB
+(gdb) target remote localhost:1234
+(gdb) file hello.elf
+(gdb) br _start
+(gdb) info regi
+(gdb) disas _start
+(gdb) stepi
+
 ```
 
 ## Refs
